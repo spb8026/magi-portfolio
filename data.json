@@ -1,0 +1,452 @@
+{
+  "schemaVersion": 1,
+
+  "techById": {
+    "angular": { "id": "angular", "name": "Angular", "image": "/angular.png" },
+    "nextjs": { "id": "nextjs", "name": "Next.js", "image": "/next.svg" },
+    "supabase": { "id": "supabase", "name": "Supabase", "image": "/supabase.png" },
+    "java": { "id": "java", "name": "Java", "image": "/java.webp" },
+    "python": { "id": "python", "name": "Python", "image": "/python.webp" },
+    "c": { "id": "c", "name": "C", "image": "/c.webp" },
+    "cpp": { "id": "cpp", "name": "C++", "image": "/cpp.png" },
+    "postgres": { "id": "postgres", "name": "PostgreSQL", "image": "/postgre.webp" },
+    "webflow": { "id": "webflow", "name": "Webflow", "image": "/webflow.webp" },
+    "git": { "id": "git", "name": "Git", "image": "/git.png" },
+    "springboot": { "id": "springboot", "name": "Spring Boot", "image": "/spring.png" },
+    "arduino": { "id": "arduino", "name": "Arduino", "image": "/arduino.png" },
+    "scheme": { "id": "scheme", "name": "Scheme", "image": "/scheme.svg" },
+    "inventor": { "id": "inventor", "name": "Autodesk Inventor", "image": "/inventor.png" },
+    "photoshop": { "id": "photoshop", "name": "Photoshop", "image": "/photoshop.png" }
+  },
+
+  "songsById": {
+    "paychex-intern": {
+      "id": "paychex-intern",
+      "title": "Paychex Internship",
+      "description": "(Remote | 1/25 - Current) \n Modernized enterprise-scale financial app responsible for millions in daily transactions by migrating Angular Material to an internal UI library, improving maintainability and UX consistency.\nExpanded automated testing coverage using Python’s Selenium, increasing confidence in critical financial workflows.\nWorked in a Kanban framework with limited WIP, participating in backlog grooming and story refinement sessions to improve throughput and team efficiency.",
+      "links": [],
+      "credits": [],
+      "techIds": ["angular", "git", "python"],
+      "image": "/paychex.png"
+    },
+    "its-service-desk": {
+      "id": "its-service-desk",
+      "title": "ITS Service Desk",
+      "description": "(Henrietta, NY | 10/24 - Current)\nProviding first-line support for technology and accounts within the RIT community.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/servicedesk.png"
+    },
+    "roommates-pwa": {
+      "id": "roommates-pwa",
+      "title": "Roomates Progressive Web App",
+      "description": "Developing a progressive web app in Next.js to be used by roomates. This will include a shared calendar, split payments, a live text chat, as well as the ability to make request to alter/add/exchange chores.",
+      "links": [],
+      "credits": [],
+      "techIds": ["nextjs", "supabase"],
+      "image": "/roomates.png"
+    },
+    "beer-pong-table": {
+      "id": "beer-pong-table",
+      "title": "Arduino Enchanced Beer-Pong Table",
+      "description": "Utilizing an Arduino and Ultra-Sonic sensor's to create an enchacned Beer-Pong table.",
+      "links": [],
+      "credits": [],
+      "techIds": ["python", "arduino"],
+      "image": "/roomates.png"
+    },
+    "java-skill": {
+      "id": "java-skill",
+      "title": "Java",
+      "description": "As my main language of choice, I have a wide array of experiances using Java and Object Orinted Programming a a whole.",
+      "links": ["https://github.com/spb8026/Monopoly", "https://github.com/RIT-SWEN-261-006/team-project-2235-swen-261-06-2b-wizards", "https://github.com/apc5074/Team12Compiler"],
+      "credits": [],
+      "techIds": [],
+      "image": "/java.webp"
+    },
+    "python-skill": {
+      "id": "python-skill",
+      "title": "Python",
+      "description": "Used within Computer Science I for basic programming introductions. Mainly used for small scripting needs and statistical analysis.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/python.webp"
+    },
+    "c-skill": {
+      "id": "c-skill",
+      "title": "C",
+      "description": "Used to learn the basic's of low level languages and data manegment.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/c.webp"
+    },
+    "cpp-skill": {
+      "id": "cpp-skill",
+      "title": "C++",
+      "description": "Basic understanding of Object-Oriented Programming in C++.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/cpp.png"
+    },
+    "postgres-skill": {
+      "id": "postgres-skill",
+      "title": "PostgreSQL",
+      "description": "Understanding of both design and implenentation of a database using Postgress.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/postgre.webp"
+    },
+    "nextjs-skill": {
+      "id": "nextjs-skill",
+      "title": "Next JS",
+      "description": "Designed this site using Next JS. Created a demo application for First Citizens Bank.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/next.svg"
+    },
+    "angular-skill": {
+      "id": "angular-skill",
+      "title": "Angular",
+      "description": "Worked with a team to create a makeshift E-Store using Angular.",
+      "links": ["https://github.com/RIT-SWEN-261-006/team-project-2235-swen-261-06-2b-wizards"],
+      "credits": [],
+      "techIds": [],
+      "image": "/angular.png"
+    },
+    "webflow-skill": {
+      "id": "webflow-skill",
+      "title": "WebFlow",
+      "description": "Designed personal portfolio website's for peers using Webflow",
+      "links": ["https://jadyns-portfolio-909705.webflow.io/"],
+      "credits": [],
+      "techIds": [],
+      "image": "/webflow.webp"
+    },
+    "git-skill": {
+      "id": "git-skill",
+      "title": "GIT",
+      "description": "Utilized GIT, Github, and GitLab for multiple projects.",
+      "links": ["https://github.com/spb8026"],
+      "credits": [],
+      "techIds": [],
+      "image": "/git.png"
+    },
+    "vhdl-skill": {
+      "id": "vhdl-skill",
+      "title": "Simple Systems Design / VHDL",
+      "description": "Basic understanding of logic systems design physically and using VHDL in a project.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/circuit.jpg"
+    },
+    "inventor-skill": {
+      "id": "inventor-skill",
+      "title": "Autodesk Inventor",
+      "description": "Used autodesk for modeling and design of 3D objects.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/inventor.png"
+    },
+    "photoshop-skill": {
+      "id": "photoshop-skill",
+      "title": "Photoshop",
+      "description": "Used photoshop for making logos, graphics, and editing photos.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/photoshop.png"
+    },
+    "fcb-intern": {
+      "id": "fcb-intern",
+      "title": "First Citizens Banks Internship",
+      "description": "(Morristown, NJ | 5/24 - 8/24)\n Working with the Enterprise Incident Management Team.",
+      "links": [],
+      "credits": [],
+      "techIds": ["java", "nextjs"],
+      "image": "/FCB"
+    },
+    "note-taker": {
+      "id": "note-taker",
+      "title": "Student Note Taker",
+      "description": "(Henrietta, NY | 11/22-5/23, 1/24 - Present)\n Taking accurate and effective notes for NTID students at RIT.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/rit.png"
+    },
+    "maintenance-worker": {
+      "id": "maintenance-worker",
+      "title": "Student Maintenance Worker",
+      "description": "(Henrietta, NY | 3/24-5/24)\n Helped take care of the RIT President's property at Liberty Hill.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/rit.png"
+    },
+    "dominos": {
+      "id": "dominos",
+      "title": "Domino’s Delivery Driver",
+      "description": "(Hamburg, NJ | 7/23-8/23)\n Efficiently delivered and prepared Domino's products.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/dominos.png"
+    },
+    "dunkin": {
+      "id": "dunkin",
+      "title": "Dunkin Crew Member",
+      "description": "(Vernon, NJ | 7/23-8/23)\n Accurately created Dunkin' beverages in a fast-paced environment.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/dunkin.png"
+    },
+    "tall-timbers": {
+      "id": "tall-timbers",
+      "title": "Tall Timbers Maintenance Crew",
+      "description": "(Vernon, NJ | 4/21-8/22)\n Performed landscaping, painting, and janitorial duties.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/tt.png"
+    },
+    "mountain-creek": {
+      "id": "mountain-creek",
+      "title": "Mountain Creek Ski Resrort Cashier",
+      "description": "(Vernon, NJ | 12/19-3/20)\n Handled transactions while upselling Season Passes to customers.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/mountaincreek.jpg"
+    },
+    "cs1": {
+      "id": "cs1",
+      "title": "Computer Science I",
+      "description": "Introductory computer science course while working with Python.",
+      "links": [],
+      "credits": [],
+      "techIds": ["python"],
+      "image": "/CSI.png"
+    },
+    "cs2": {
+      "id": "cs2",
+      "title": "Computer Science II",
+      "description": "Introductory computer science course focused on OOP using Java.",
+      "links": [],
+      "credits": [],
+      "techIds": ["java"],
+      "image": "/CSII.png"
+    },
+    "mops": {
+      "id": "mops",
+      "title": "Mechanics of Programming",
+      "description": "Introduction to low-level programming and memory management using C.",
+      "links": [],
+      "credits": [],
+      "techIds": ["c"],
+      "image": "/MOPS.png"
+    },
+    "cps1": {
+      "id": "cps1",
+      "title": "Computational Problem Solving I",
+      "description": "Solving simple tasks using programming in C++.",
+      "links": [],
+      "credits": [],
+      "techIds": ["cpp"],
+      "image": "/CPP.png"
+    },
+    "cs-theory": {
+      "id": "cs-theory",
+      "title": "Introduction to Computer Science Theory",
+      "description": "Theoretical practices behind computation.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/theory.png"
+    },
+    "algo-analysis": {
+      "id": "algo-analysis",
+      "title": "Analysis of Algorithms",
+      "description": "Analyzing and using different data structures and algorithms.",
+      "links": [],
+      "credits": [],
+      "techIds": ["java"],
+      "image": "/algos.webp"
+    },
+    "data-mgmt": {
+      "id": "data-mgmt",
+      "title": "Principles of Data Management",
+      "description": "Design databases with a focus in SQL.",
+      "links": [],
+      "credits": [],
+      "techIds": ["postgres", "java"],
+      "image": "/postgre.webp"
+    },
+    "soft-eng": {
+      "id": "soft-eng",
+      "title": "Intro to Software Engineering",
+      "description": "Semester-long mock-up of a Scrum-Agile process with building an E-Store.",
+      "links": ["https://github.com/RIT-SWEN-261-006/team-project-2235-swen-261-06-2b-wizards"],
+      "credits": ["Jack Barter", "Joseph Skinner", "Garret Tupper", "Evan Svage"],
+      "techIds": ["angular", "springboot"],
+      "image": "/SWEN.png"
+    },
+    "ai-intro": {
+      "id": "ai-intro",
+      "title": "Intro to Artificial Intelligence",
+      "description": "Introduction to the theory behind modern Artificial Intelligence.",
+      "links": ["https://github.com/spb8026/AI_lab1_AStar", "https://github.com/spb8026/Lab3"],
+      "credits": [],
+      "techIds": ["java", "python"],
+      "image": "/AI_map.jpg"
+    },
+    "plc": {
+      "id": "plc",
+      "title": "Programming Language Concepts",
+      "description": "Overview of how different programming languages are implemented.",
+      "links": ["https://github.com/apc5074/Team12Compiler"],
+      "credits": [],
+      "techIds": ["java", "scheme"],
+      "image": "/PLC.png"
+    },
+    "graph-theory": {
+      "id": "graph-theory",
+      "title": "Graph Theory",
+      "description": "Overview of the mathematical theory behind Graph Theory.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/graph.jpg"
+    },
+    "simulation-math": {
+      "id": "simulation-math",
+      "title": "Math: Simulation and Randomness",
+      "description": "Overview of the computational methods for producing random numbers.",
+      "links": [],
+      "credits": [],
+      "techIds": [],
+      "image": "/random.jpg"
+    },
+    "ml": {
+      "id": "ml",
+      "title": "Machine Learning",
+      "description": "An Overview of modern machine learning techniques and algorithms.\n Projects: \n - Developed an ID3 Decesion Tree from scratch to predict whether a loan would be defaulted based on various financial and personal features. \n - Used NAS-Search to speed up training of a  BERT-based and GPT-1 language model. \n - Implemented a Kaze/A-Kaze feature extractor and a Mobile-NetV3 CNN to compare if 2 images have the same classification. ",
+      "links": [],
+      "credits": [],
+      "techIds": ["python"],
+      "image": "/ml.jpg"
+    },
+    "copads": {
+      "id": "copads",
+      "title": "Concepts of Parallel and Distributed Systems",
+      "description": "Studied the basics of parallel and distributed systems.\n Projects: \n - Developed a parallelized generator for large prime numbers and large odd factors",
+      "links": [],
+      "credits": [],
+      "techIds": ["c#"],
+      "image": "/copads.png"
+    },
+    "algo-trade": {
+      "id": "algo-trade",
+      "title": "Algorithmic Trading",
+      "description": "Studied the basics of algorithmic trading and financial markets.\n Projects: \n - Developed a framework for testing different financial trading algorithms and back-testing them using scraped data. \n - Reverse-engineered a Python model following the Invesco S&P 500 Momentum ETF methodology to predict the ETF’s Rebalanced stock holdings with 96% accuracy on target rebalance dates. \n - Developed a Momentum/Cashflow weighted algorithm to diversify the SPMO holdings, producing 82% returns over a 2-year previous backtest.",
+      "links": ["https://github.com/spb8026/TradingAlgo"],
+      "credits": [],
+      "techIds": ["python"],
+      "image": "/stock.webp"
+    },
+    "monopoly-project": {
+      "id": "monopoly-project",
+      "title": "Command Line Monopoly",
+      "description": "Re-created Monopoly as a command-line game to practice Java OOP.",
+      "links": ["https://github.com/spb8026/Monopoly"],
+      "credits": [],
+      "techIds": ["java"],
+      "image": "/monopoly.png"
+    },
+    "web-social-mgmt": {
+      "id": "web-social-mgmt",
+      "title": "Web-Design / Social Media Management",
+      "description": "(Remote | 7/22-Present)\n Established and managed Instagram and Facebook profiles.",
+      "links": ["https://www.instagram.com/talltimbersofficial/"],
+      "credits": [],
+      "techIds": ["webflow"],
+      "image": "/Red-Logo.png"
+    },
+    "stock-trading-framework": {
+      "id": "stock-trading-framework",
+      "title": "Stock Trading Framework",
+      "description": "Developed a framework for testing different financial trading algorithms and back-testing them using scraped data.\nReverse-engineered a Python model following the Invesco S&P 500 Momentum ETF methodology to predict the ETF’s\nRebalanced stock holdings with 96% accuracy on target rebalance dates. \nDeveloped a Momentum/Cashflow weighted algorithm to diversify the SPMO holdings, producing 82% returns over a 2-year previous backtest.",
+      "links": ["https://github.com/spb8026/TradingAlgo"],
+      "credits": [],
+      "techIds": ["python"], 
+      "image": "/stock.webp"
+    },
+    "PKP": {
+      "id": "PKP",
+      "title": "PKP - Startup Project",
+      "description": "Development on a full-stack Android/iOS React Native application for vendor-event matching. Implemented Firebase Cloud Messaging for in-app and push notifications for the application.",
+      "links": [],
+      "credits": ["Colin Tondreau"],
+      "techIds": ["TypeScript", "React Native", "Firebase"], 
+      "image": "/firebase.png"
+    }
+  },
+
+  "playlistsById": {
+    "ITW": {
+      "id": "ITW",
+      "title": "In The Works",
+      "description": "A highlight of my current achievements.",
+      "icon": "faCalendarDay",
+      "songIds": ["its-service-desk", "stock-trading-framework"]
+    },
+    "skills": {
+      "id": "skills",
+      "title": "Skills",
+      "description": "A collection of the major skills/technologies within my toolbelt.",
+      "icon": "faLightbulb",
+      "songIds": [
+        "java-skill", "python-skill", "c-skill", "cpp-skill", "postgres-skill",
+        "nextjs-skill", "angular-skill", "webflow-skill", "git-skill",
+        "vhdl-skill", "inventor-skill", "photoshop-skill"
+      ]
+    },
+    "work": {
+      "id": "work",
+      "title": "Work Experience",
+      "description": "Collection of all my work experience throughout my life.",
+      "icon": "faBriefcase",
+      "songIds": [
+        "paychex-intern", "its-service-desk", "fcb-intern", "note-taker",
+        "maintenance-worker", "dominos", "dunkin", "tall-timbers", "mountain-creek"
+      ]
+    },
+    "academic": {
+      "id": "academic",
+      "title": "Academic",
+      "description": "A collection of notable classes I’ve taken.",
+      "icon": "faGraduationCap",
+      "songIds": [
+        "cs1", "cs2", "mops", "cps1", "cs-theory", "algo-analysis",
+        "data-mgmt", "soft-eng", "ai-intro", "plc", "graph-theory", "simulation-math", "ml", "copads", "algo-trade"
+      ]
+    },
+    "projects": {
+      "id": "projects",
+      "title": "Side Projects",
+      "description": "Side design and devlopment projects.",
+      "icon": "faCode",
+      "songIds": ["stock-trading-framework", "pkp", "monopoly-project", "web-social-mgmt"]
+    }
+  },
+
+  "playlistOrder": ["ITW", "skills", "work", "academic", "projects"]
+}
