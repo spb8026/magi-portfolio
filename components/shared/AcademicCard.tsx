@@ -1,12 +1,14 @@
 import type { AcademicEntry } from '@/lib/types'
+import SkillTag from './SkillTag'
 
 export default function AcademicCard({ title, description, tags }: AcademicEntry) {
   return (
     <div
-      className="relative p-5 transition-all duration-300 data-card-hover"
+      className="relative transition-all duration-300 data-card-hover"
       style={{
         background: 'var(--panel-bg)',
         border: '1px solid var(--panel-border)',
+        padding: '5px',
       }}
     >
       <h3
@@ -20,15 +22,7 @@ export default function AcademicCard({ title, description, tags }: AcademicEntry
       </p>
       {tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-[9px] tracking-[1px] uppercase px-2 py-0.5"
-              style={{ color: 'var(--orange)', border: '1px solid var(--orange-dim)' }}
-            >
-              {tag}
-            </span>
-          ))}
+          {tags.map((tag) => <SkillTag key={tag} tag={tag} />)}
         </div>
       )}
     </div>

@@ -30,12 +30,7 @@ export const aboutCards: DataCard[] = [
     {
     index: '03',
     title: 'Technical Skills',
-    stats: [
-      { label: 'LANGUAGES', value: 'JAVA / PYTHON /  TYPESCRIPT / GO' },
-      { label: 'FRAMEWORKS', value: 'ANGULAR ' },
-      { label: 'BACKEND', value: 'NODE / DJANGO' },
-      { label: 'TOOLS', value: 'GIT / DOCKER' },
-    ],
+    tags: ['Java', 'Python', 'TypeScript', 'Go', 'Angular', 'Next.js', 'Node.js', 'Django', 'Git', 'Docker'],
   },
   {
     index: '02',
@@ -195,6 +190,7 @@ export const timeline: TimelineEntry[] = [
     company: 'Paychex — Remote',
     description:
       'Modernized an enterprise-scale financial app responsible for millions in daily transactions by migrating Angular Material to an internal UI library, improving maintainability and UX consistency. Expanded automated testing coverage using Python\'s Selenium, increasing confidence in critical financial workflows. Worked in a Kanban framework with limited WIP, participating in backlog grooming and story refinement sessions.',
+    tags: ['Angular', 'Python', 'TypeScript'],
   },
   {
     range: '10/24 — PRESENT',
@@ -209,6 +205,7 @@ export const timeline: TimelineEntry[] = [
     company: 'First Citizens Bank — Morristown, NJ',
     description:
       'Worked with the Enterprise Incident Management Team, contributing to internal tooling built with Java and Next.js.',
+    tags: ['Java', 'Next.js', 'TypeScript'],
   },
   {
     range: '3/24 — 5/24',

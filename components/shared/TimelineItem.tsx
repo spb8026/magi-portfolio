@@ -1,6 +1,7 @@
 import type { TimelineEntry } from '@/lib/types'
+import SkillTag from './SkillTag'
 
-export default function TimelineItem({ range, role, company, description }: TimelineEntry) {
+export default function TimelineItem({ range, role, company, description, tags }: TimelineEntry) {
   return (
     <div className="relative mb-12">
       {/* Diamond bullet */}
@@ -27,6 +28,11 @@ export default function TimelineItem({ range, role, company, description }: Time
       >
         {description}
       </p>
+      {tags && tags.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mt-3">
+          {tags.map((tag) => <SkillTag key={tag} tag={tag} />)}
+        </div>
+      )}
     </div>
   )
 }

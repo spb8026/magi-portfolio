@@ -1,12 +1,14 @@
 import type { DataCard as DataCardType } from '@/lib/types'
+import SkillTag from './SkillTag'
 
-export default function DataCard({ index, title, body, stats }: DataCardType) {
+export default function DataCard({ index, title, body, stats, tags }: DataCardType) {
   return (
     <div
-      className="relative p-7 transition-all duration-300 group"
+      className="relative transition-all duration-300 group"
       style={{
         background: 'var(--panel-bg)',
         border: '1px solid var(--panel-border)',
+        padding: '10px',
       }}
     >
       {/* Index label */}
@@ -28,6 +30,12 @@ export default function DataCard({ index, title, body, stats }: DataCardType) {
         <p className="text-[13px] leading-relaxed" style={{ color: 'var(--text)' }}>
           {body}
         </p>
+      )}
+
+      {tags && tags.length > 0 && (
+        <div className="flex flex-wrap gap-1.5">
+          {tags.map((tag) => <SkillTag key={tag} tag={tag} />)}
+        </div>
       )}
 
       {stats && (

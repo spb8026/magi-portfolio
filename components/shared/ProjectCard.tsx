@@ -1,4 +1,5 @@
 import type { Project } from '@/lib/types'
+import SkillTag from './SkillTag'
 
 export default function ProjectCard({ id, icon, title, description, tags, href }: Project) {
   const className = "project-card-wrapper relative overflow-hidden transition-all duration-400 block"
@@ -28,7 +29,7 @@ export default function ProjectCard({ id, icon, title, description, tags, href }
         </span>
       </div>
 
-      <div className="p-6">
+      <div style={{ padding: '5px' }}>
         <h3
           className="font-orbitron font-bold text-[14px] tracking-[2px] mb-2"
           style={{ color: 'var(--cyan)' }}
@@ -39,15 +40,7 @@ export default function ProjectCard({ id, icon, title, description, tags, href }
           {description}
         </p>
         <div className="flex flex-wrap gap-1.5">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-[10px] tracking-[1px] uppercase px-2.5 py-0.5"
-              style={{ color: 'var(--orange)', border: '1px solid var(--orange-dim)' }}
-            >
-              {tag}
-            </span>
-          ))}
+          {tags.map((tag) => <SkillTag key={tag} tag={tag} />)}
         </div>
       </div>
 

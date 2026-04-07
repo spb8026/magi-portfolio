@@ -9,6 +9,7 @@ export interface DataCard {
   title: string
   body?: string
   stats?: StatRow[]
+  tags?: string[]
 }
 
 export interface Project {
@@ -25,6 +26,7 @@ export interface TimelineEntry {
   role: string
   company: string
   description: string
+  tags?: string[]
 }
 
 export interface ContactLink {

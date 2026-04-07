@@ -215,6 +215,15 @@ body {
   pointer-events: none;
 }
 
+/* Skill tag chips */
+.skill-tag {
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.skill-tag:hover {
+  background: rgba(255, 136, 0, 0.1) !important;
+  border-color: var(--orange) !important;
+}
+
 /* MAGI hero panels */
 .magi-panel {
   filter: drop-shadow(0 0 1.5px var(--cyan-dim));
