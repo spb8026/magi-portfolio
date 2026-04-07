@@ -24,8 +24,18 @@ export const typingQuestion = "Should one follow emotions instead of f"
 export const aboutCards: DataCard[] = [
   {
     index: '01',
-    title: 'Profile',
-    body: 'A driven student passionate about technology, design, and building things that matter. Currently pursuing studies while working on projects that bridge creativity and engineering.',
+    title: 'Summary ',
+    body: 'Driven by an unwavering passion for technology, I am enthusiastically pursuing a degree in Computer Science. My goal is to refine and enhance my skills in a practical setting as I transition from academia to the professional world. I am actively seeking full-time carreer oppurtunities for after May 2026. Alongside my academic endeavors, I am also available for freelance projects in Web Development and Web Design. This side passion of mine not only complements my formal education but also allows me to apply and expand my technical expertise in creating visually appealing and functionally robust websites. Whether it\'s through an internship or freelance work, I am eager to contribute my growing skill set in a dynamic, real-world environment.',
+  },
+    {
+    index: '03',
+    title: 'Technical Skills',
+    stats: [
+      { label: 'LANGUAGES', value: 'JAVA / PYTHON /  TYPESCRIPT / GO' },
+      { label: 'FRAMEWORKS', value: 'ANGULAR ' },
+      { label: 'BACKEND', value: 'NODE / DJANGO' },
+      { label: 'TOOLS', value: 'GIT / DOCKER' },
+    ],
   },
   {
     index: '02',
@@ -35,16 +45,6 @@ export const aboutCards: DataCard[] = [
       { label: 'ROLE', value: 'STUDENT' },
       { label: 'FOCUS', value: 'COMPUTER SCIENCE' },
       { label: 'AVAILABILITY', value: 'OPEN TO WORK' },
-    ],
-  },
-  {
-    index: '03',
-    title: 'Technical Skills',
-    stats: [
-      { label: 'LANGUAGES', value: 'JS / PY / TS' },
-      { label: 'FRONTEND', value: 'REACT / NEXT' },
-      { label: 'BACKEND', value: 'NODE / DJANGO' },
-      { label: 'TOOLS', value: 'GIT / DOCKER' },
     ],
   },
   {

@@ -25,9 +25,7 @@ function buildText(p: ActiveProject) {
 
 const panelStyle = {
   background: 'var(--panel-bg)',
-  border: '1px solid var(--panel-border)',
   position: 'relative' as const,
-  overflow: 'hidden' as const,
   display: 'flex',
   flexDirection: 'column' as const,
   justifyContent: 'center',
@@ -61,12 +59,57 @@ interface Props {
   startTyping: boolean
 }
 
+interface Bar { x1: number; y1: number; x2: number; y2: number }
+interface TitleCenter { y: number; maxWidth: number }
+
 export default function MagiHero({ startTyping }: Props) {
   const [projIndex, setProjIndex] = useState(0)
   const [charCount, setCharCount] = useState(0)
   const phase    = useRef<'in' | 'hold' | 'out'>('in')
   const countRef = useRef(0)
   const timer    = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const containerRef  = useRef<HTMLDivElement>(null)
+  const balthasarRef  = useRef<HTMLAnchorElement>(null)
+  const casperRef     = useRef<HTMLAnchorElement>(null)
+  const melchiorRef   = useRef<HTMLAnchorElement>(null)
+  const [bars, setBars] = useState<Bar[]>([])
+  const [titleCenter, setTitleCenter] = useState<TitleCenter | null>(null)
+
+  useEffect(() => {
+    function calcBars() {
+      const cr = containerRef.current?.getBoundingClientRect()
+      const br = balthasarRef.current?.getBoundingClientRect()
+      const ca = casperRef.current?.getBoundingClientRect()
+      const me = melchiorRef.current?.getBoundingClientRect()
+      if (!cr || !br || !ca || !me) return
+
+      // Connection points derived from each panel's clip-path percentages
+      const bbl = { x: br.left - cr.left + br.width * 0.25, y: br.bottom - cr.top }   // BALTHASAR bottom-left  (25%,100%)
+      const bbr = { x: br.left - cr.left + br.width * 0.75, y: br.bottom - cr.top }   // BALTHASAR bottom-right (75%,100%)
+      const ctr = { x: ca.right - cr.left,                   y: ca.top - cr.top + ca.height * 0.44 } // CASPER top-right cut   (100%,44%)
+      const mtl = { x: me.left - cr.left,                    y: me.top - cr.top + me.height * 0.44 } // MELCHIOR top-left cut  (0%,44%)
+
+      setBars([
+        { x1: bbl.x, y1: bbl.y, x2: ctr.x, y2: ctr.y }, // BALTHASAR → CASPER
+        { x1: bbr.x, y1: bbr.y, x2: mtl.x, y2: mtl.y }, // BALTHASAR → MELCHIOR
+        { x1: ctr.x, y1: ctr.y, x2: mtl.x, y2: mtl.y }, // CASPER → MELCHIOR
+      ])
+
+      // Title center = midpoint between BALTHASAR bottom and CASPER/MELCHIOR cut level
+      const titleY = (bbl.y + ctr.y) / 2
+      // At titleY, interpolate along each diagonal bar to find the available width
+      const t = (titleY - bbl.y) / (ctr.y - bbl.y)
+      const leftX  = bbl.x + t * (ctr.x - bbl.x)
+      const rightX = bbr.x + t * (mtl.x - bbr.x)
+      setTitleCenter({ y: titleY, maxWidth: rightX - leftX - 24 })
+    }
+
+    calcBars()
+    const ro = new ResizeObserver(calcBars)
+    if (containerRef.current) ro.observe(containerRef.current)
+    return () => ro.disconnect()
+  }, [])
 
   useEffect(() => {
     if (!startTyping) return
@@ -123,9 +166,10 @@ export default function MagiHero({ startTyping }: Props) {
     >
       {/* MAGI cross grid */}
       <div
+        ref={containerRef}
         className="magi-outer-border relative"
         style={{
-          width: 'min(1100px, 94vw)',
+          width: 'min(1500px, 96vw)',
           height: '100%',
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr',
@@ -137,6 +181,30 @@ export default function MagiHero({ startTyping }: Props) {
           boxShadow: 'inset 0 0 60px rgba(0,0,0,0.8), 0 0 40px rgba(0,212,255,0.05)',
         }}
       >
+        {/* Connecting bars between the three cores */}
+        <svg
+          style={{
+            position: 'absolute',
+            top: 0, left: 0,
+            width: '100%', height: '100%',
+            pointerEvents: 'none',
+            zIndex: 3,
+            overflow: 'visible',
+          }}
+        >
+          {bars.map((b, i) => (
+            <line
+              key={i}
+              x1={b.x1} y1={b.y1}
+              x2={b.x2} y2={b.y2}
+              stroke="var(--orange)"
+              strokeWidth="4"
+              strokeLinecap="butt"
+              style={{ filter: 'drop-shadow(0 0 6px var(--orange-glow))' }}
+            />
+          ))}
+        </svg>
+
         {/* JP corner labels — hidden on mobile via responsive style */}
         <div
           className="font-jp font-black absolute top-6 left-6 z-[5] hide-mobile"
@@ -203,39 +271,43 @@ export default function MagiHero({ startTyping }: Props) {
 
         {/* Row 1: empty / BALTHASAR / empty */}
         <div />
-        <a href="/projects" className="magi-panel" style={{ ...panelStyle, gridColumn: 2, gridRow: 1 }}>
+        <a ref={balthasarRef} href="/projects" className="magi-panel magi-panel-balthasar" style={{ ...panelStyle, gridColumn: 2, gridRow: 1 }}>
           <div style={panelLabelStyle}>PROJECTS</div>
           <div style={panelSubStyle}>BALTHASAR · 2</div>
         </a>
         <div />
 
         {/* Row 2: CASPER / MAGI / MELCHIOR */}
-        <a href="/experience" className="magi-panel" style={{ ...panelStyle, gridColumn: 1, gridRow: 2 }}>
+        <a ref={casperRef} href="/experience" className="magi-panel magi-panel-casper" style={{ ...panelStyle, gridColumn: 1, gridRow: 2 }}>
           <div style={panelLabelStyle}>EXPERIENCE</div>
           <div style={panelSubStyle}>CASPER · 3</div>
         </a>
 
         <div
           style={{
-            gridColumn: 2,
-            gridRow: 2,
+            position: 'absolute',
+            top: titleCenter ? `${titleCenter.y}px` : '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 10,
             background: 'transparent',
-            border: '1px solid var(--orange-dim)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
             gap: '10px',
             padding: '20px',
+            pointerEvents: 'none',
+            width: titleCenter ? `${titleCenter.maxWidth}px` : undefined,
           }}
         >
           {/* Name */}
           <span
             className="font-orbitron font-black"
             style={{
-              fontSize: 'clamp(18px, 3.5vw, 32px)',
+              fontSize: 'clamp(14px, 2.4vw, 28px)',
               color: 'var(--orange)',
-              letterSpacing: '6px',
+              letterSpacing: '4px',
               textShadow: '0 0 30px var(--orange-glow)',
               textAlign: 'center',
               display: 'block',
@@ -266,7 +338,7 @@ export default function MagiHero({ startTyping }: Props) {
           </div>
         </div>
 
-        <a href="/about" className="magi-panel" style={{ ...panelStyle, gridColumn: 3, gridRow: 2 }}>
+        <a ref={melchiorRef} href="/about" className="magi-panel magi-panel-melchior" style={{ ...panelStyle, gridColumn: 3, gridRow: 2 }}>
           <div style={panelLabelStyle}>ABOUT ME</div>
           <div style={panelSubStyle}>MELCHIOR · 1</div>
         </a>
