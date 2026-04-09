@@ -84,3 +84,11 @@ export interface HeroMessage {
   header: string
   lines: string[]
 }
+
+export interface FileRecord {
+  id: string
+  title: string
+  description: string
+  status: 'ok' | 'offline'
+  href: string
+}

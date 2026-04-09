@@ -35,6 +35,7 @@ export default function Header({ visible, terminalWidth = 0 }: Props) {
           { href: '/about', label: 'ABOUT' },
           { href: '/projects', label: 'PROJECTS' },
           { href: '/experience', label: 'EXPERIANCE' },
+          { href: '/records', label: 'RECORDS' },
         ].map(({ href, label }) => (
           <a
             key={href}

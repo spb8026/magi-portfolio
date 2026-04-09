@@ -4,6 +4,7 @@ import type {
   BootLine,
   ContactLink,
   DataCard,
+  FileRecord,
   HeroMessage,
   Project,
   TimelineEntry,
@@ -481,6 +482,17 @@ export const contactLinks: ContactLink[] = [
   },
   { label: "RESUME", icon: "📄", href: "/resume.pdf" },
 ];
+
+// ===== FILE RECORDS (shown in /records hub) =====
+export const fileRecords: FileRecord[] = [
+  {
+    id: 'FILE-001',
+    title: 'RESUME',
+    description: 'Professional resume — work experience, education, and technical skills.',
+    status: 'ok',
+    href: '/resume',
+  },
+]
 
 // ===== HERO MESSAGES (right meta block) =====
 export const heroMessages: HeroMessage[] = [

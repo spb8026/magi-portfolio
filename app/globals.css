@@ -297,4 +297,114 @@ body {
   .hide-mobile { display: none !important; }
   header { flex-direction: column; gap: 12px; padding: 12px 16px !important; }
   nav { flex-wrap: wrap; justify-content: center; }
+  .records-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ===== FILE VIEWER THEME ===== */
+:root {
+  --file-bg: #b06400;
+  --file-bg-alt: #994f00;
+  --file-bg-section: #6b3800;
+  --file-text: #180900;
+  --file-text-dim: #4a1f00;
+  --file-header-bg: #070402;
+  --file-col-header-bg: #5c3000;
+  --file-border: #3d2000;
+  --file-badge-ok-bg: #00cc44;
+  --file-badge-ok-text: #001a08;
+  --file-badge-warn-bg: #cc3300;
+  --file-badge-warn-text: #1a0000;
+}
+
+/* File document outer shell */
+.file-document {
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--orange-dim);
+  box-shadow: 0 0 40px var(--orange-glow), inset 0 0 20px rgba(255, 136, 0, 0.03);
+}
+
+/* File data rows */
+.file-row {
+  border-bottom: 1px solid var(--file-border);
+  transition: background 0.15s ease;
+}
+.file-row:hover { background: var(--file-bg-alt) !important; }
+.file-row:last-child { border-bottom: none; }
+
+/* Tab switcher */
+.file-tab {
+  padding: 8px 20px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  border: 1px solid var(--panel-border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.file-tab:hover {
+  border-color: var(--orange-dim);
+  color: var(--text);
+}
+.file-tab--active {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: rgba(255, 136, 0, 0.08);
+  border-bottom: 2px solid var(--orange);
+}
+
+/* File card hover (in /records grid) */
+.file-card-wrapper { display: block; }
+.file-card-wrapper .file-document {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.file-card-wrapper:hover .file-document {
+  box-shadow: 0 0 30px var(--orange-glow);
+  transform: translateY(-3px);
+}
+
+/* Resume download button */
+.resume-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.resume-download-btn:hover {
+  color: var(--bg) !important;
+  background: var(--cyan);
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 20px var(--cyan-glow);
+}
+
+/* Resume contact links */
+.resume-contact-link { transition: color 0.2s ease; }
+.resume-contact-link:hover { color: var(--cyan) !important; }
+
+/* Clickable file rows (links inside amber viewer) */
+.file-row-link {
+  display: grid;
+  border-bottom: 1px solid var(--file-border);
+  padding: 6px 16px;
+  font-size: 12px;
+  line-height: 1.6;
+  background: var(--file-bg);
+  color: var(--file-text);
+  text-decoration: none;
+  transition: background 0.15s ease;
+  cursor: pointer;
+}
+.file-row-link:hover {
+  background: var(--file-bg-alt) !important;
+}
+.file-row-link:last-child { border-bottom: none; }
+
+/* Dimmed/pending file rows */
+.file-row-pending {
+  opacity: 0.45;
+  cursor: default;
 }
