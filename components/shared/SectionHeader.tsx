@@ -1,10 +1,9 @@
 interface Props {
   code: string
   title: string
-  jp: string
 }
 
-export default function SectionHeader({ code, title, jp }: Props) {
+export default function SectionHeader({ code, title }: Props) {
   return (
     <div className="flex items-center gap-4 mb-12 relative">
       <span
@@ -21,12 +20,6 @@ export default function SectionHeader({ code, title, jp }: Props) {
         }}
       >
         {title}
-      </span>
-      <span
-        className="font-jp text-[18px] tracking-[8px]"
-        style={{ color: 'var(--text-dim)', fontWeight: 900 }}
-      >
-        {jp}
       </span>
       <div className="section-header-line" />
     </div>

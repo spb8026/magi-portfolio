@@ -4,12 +4,29 @@ export interface StatRow {
   active?: boolean // renders a pulsing status indicator before the value
 }
 
+export interface SkillEntry {
+  name: string
+  level: 1 | 2 | 3 | 4 | 5
+}
+
+export interface TagGroup {
+  label: string
+  tags: SkillEntry[]
+}
+
 export interface DataCard {
   index: string
   title: string
   body?: string
+  info?: string[]
   stats?: StatRow[]
   tags?: string[]
+  tagGroups?: TagGroup[]
+}
+
+export interface ProjectLink {
+  label: string
+  href: string
 }
 
 export interface Project {
@@ -18,7 +35,10 @@ export interface Project {
   title: string
   description: string
   tags: string[]
-  href?: string
+  hiddenTags?: string[]
+  links?: ProjectLink[]
+  inProgress?: boolean
+  secondary?: boolean
 }
 
 export interface TimelineEntry {
@@ -27,6 +47,8 @@ export interface TimelineEntry {
   company: string
   description: string
   tags?: string[]
+  hiddenTags?: string[]
+  secondary?: boolean
 }
 
 export interface ContactLink {
@@ -45,6 +67,8 @@ export interface AcademicEntry {
   title: string
   description: string
   tags: string[]
+  hiddenTags?: string[]
+  inProgress?: boolean
 }
 
 export interface ActiveProject {
@@ -53,4 +77,10 @@ export interface ActiveProject {
   tech: string   // e.g. "NEXT.JS / TS"
   status: string // e.g. "IN PROGRESS" | "ACTIVE" | "TESTING"
   priority: string // e.g. "AAA" | "AA" | "A"
+}
+
+export interface HeroMessage {
+  type: 'warn' | 'info' | 'tip' | 'sys'
+  header: string
+  lines: string[]
 }

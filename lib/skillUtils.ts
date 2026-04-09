@@ -14,9 +14,9 @@ export function tagToSlug(tag: string): string {
 export function getAllTags(): string[] {
   const seen = new Set<string>()
   const all = [
-    ...projects.flatMap(p => p.tags),
-    ...academic.flatMap(a => a.tags),
-    ...timeline.flatMap(t => t.tags ?? []),
+    ...projects.flatMap(p => [...p.tags, ...(p.hiddenTags ?? [])]),
+    ...academic.flatMap(a => [...a.tags, ...(a.hiddenTags ?? [])]),
+    ...timeline.flatMap(t => [...(t.tags ?? []), ...(t.hiddenTags ?? [])]),
   ]
   return all.filter(t => { const r = !seen.has(t); seen.add(t); return r })
 }

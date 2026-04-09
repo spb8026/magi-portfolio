@@ -12,9 +12,12 @@ export default async function SkillPage({ params }: { params: Promise<{ skill: s
   const { skill } = await params
   const displayName = slugToDisplayName(skill)
 
-  const matchingExperience = timeline.filter(t => (t.tags ?? []).some(t2 => tagToSlug(t2) === skill))
-  const matchingProjects   = projects.filter(p => p.tags.some(t => tagToSlug(t) === skill))
-  const matchingAcademic   = academic.filter(a => a.tags.some(t => tagToSlug(t) === skill))
+  const hasSkill = (tags: string[], hiddenTags?: string[]) =>
+    [...tags, ...(hiddenTags ?? [])].some(t => tagToSlug(t) === skill)
+
+  const matchingExperience = timeline.filter(t => hasSkill(t.tags ?? [], t.hiddenTags))
+  const matchingProjects   = projects.filter(p => hasSkill(p.tags, p.hiddenTags))
+  const matchingAcademic   = academic.filter(a => hasSkill(a.tags, a.hiddenTags))
 
   if (!matchingExperience.length && !matchingProjects.length && !matchingAcademic.length) {
     notFound()
@@ -31,7 +34,7 @@ export default async function SkillPage({ params }: { params: Promise<{ skill: s
     <PageLayout>
       <section className="py-20 px-10">
         <ScrollReveal>
-          <SectionHeader code="SKILL-DB" title={displayName.toUpperCase()} jp="技術" />
+          <SectionHeader code="SKILL-DB" title={displayName.toUpperCase()} />
         </ScrollReveal>
 
         {matchingExperience.length > 0 && (
@@ -99,9 +102,9 @@ export default async function SkillPage({ params }: { params: Promise<{ skill: s
 export async function generateStaticParams() {
   const slugs = new Set<string>()
   ;[
-    ...projects.flatMap(p => p.tags),
-    ...academic.flatMap(a => a.tags),
-    ...timeline.flatMap(t => t.tags ?? []),
+    ...projects.flatMap(p => [...p.tags, ...(p.hiddenTags ?? [])]),
+    ...academic.flatMap(a => [...a.tags, ...(a.hiddenTags ?? [])]),
+    ...timeline.flatMap(t => [...(t.tags ?? []), ...(t.hiddenTags ?? [])]),
   ].forEach(t => slugs.add(tagToSlug(t)))
   return [...slugs].map(skill => ({ skill }))
 }

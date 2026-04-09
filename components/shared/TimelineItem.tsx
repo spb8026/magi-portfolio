@@ -3,7 +3,7 @@ import SkillTag from './SkillTag'
 
 export default function TimelineItem({ range, role, company, description, tags }: TimelineEntry) {
   return (
-    <div className="relative mb-12">
+    <div className="relative mb-12" style={{ zIndex: 1, paddingLeft: '40px' }}>
       {/* Diamond bullet */}
       <div className="timeline-bullet" />
 

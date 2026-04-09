@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import GlitchText from './GlitchText'
-import { activeProjects } from '@/lib/data'
-import type { ActiveProject } from '@/lib/types'
+import { activeProjects, heroMessages } from '@/lib/data'
+import type { ActiveProject, HeroMessage } from '@/lib/types'
 
 const TYPE_SPEED   = 28   // ms per char typing in
 const DELETE_SPEED = 14   // ms per char typing out
@@ -21,6 +21,18 @@ function buildLines(p: ActiveProject) {
 
 function buildText(p: ActiveProject) {
   return buildLines(p).join('\n')
+}
+
+function buildMsgLines(m: HeroMessage): string[] {
+  return [`[${m.type.toUpperCase()}] ${m.header}`, ...m.lines]
+}
+function buildMsgText(m: HeroMessage): string {
+  return buildMsgLines(m).join('\n')
+}
+function getMsgColor(type: HeroMessage['type']): string {
+  if (type === 'warn') return 'var(--orange)'
+  if (type === 'sys')  return 'var(--text-dim)'
+  return 'var(--cyan)'
 }
 
 const panelStyle = {
@@ -60,7 +72,6 @@ interface Props {
 }
 
 interface Bar { x1: number; y1: number; x2: number; y2: number }
-interface TitleCenter { y: number; maxWidth: number }
 
 export default function MagiHero({ startTyping }: Props) {
   const [projIndex, setProjIndex] = useState(0)
@@ -69,12 +80,19 @@ export default function MagiHero({ startTyping }: Props) {
   const countRef = useRef(0)
   const timer    = useRef<ReturnType<typeof setTimeout> | null>(null)
 
+  // Right panel state — independent cycling for heroMessages
+  const [msgIndex, setMsgIndex]         = useState(0)
+  const [msgCharCount, setMsgCharCount] = useState(0)
+  const msgPhase    = useRef<'in' | 'hold' | 'out'>('in')
+  const msgCountRef = useRef(0)
+  const msgTimer    = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   const containerRef  = useRef<HTMLDivElement>(null)
   const balthasarRef  = useRef<HTMLAnchorElement>(null)
   const casperRef     = useRef<HTMLAnchorElement>(null)
   const melchiorRef   = useRef<HTMLAnchorElement>(null)
   const [bars, setBars] = useState<Bar[]>([])
-  const [titleCenter, setTitleCenter] = useState<TitleCenter | null>(null)
+  const [titlePos, setTitlePos] = useState<{ y: number; maxWidth: number } | null>(null)
 
   useEffect(() => {
     function calcBars() {
@@ -85,24 +103,25 @@ export default function MagiHero({ startTyping }: Props) {
       if (!cr || !br || !ca || !me) return
 
       // Connection points derived from each panel's clip-path percentages
-      const bbl = { x: br.left - cr.left + br.width * 0.25, y: br.bottom - cr.top }   // BALTHASAR bottom-left  (25%,100%)
-      const bbr = { x: br.left - cr.left + br.width * 0.75, y: br.bottom - cr.top }   // BALTHASAR bottom-right (75%,100%)
-      const ctr = { x: ca.right - cr.left,                   y: ca.top - cr.top + ca.height * 0.44 } // CASPER top-right cut   (100%,44%)
-      const mtl = { x: me.left - cr.left,                    y: me.top - cr.top + me.height * 0.44 } // MELCHIOR top-left cut  (0%,44%)
+      const bbl     = { x: br.left - cr.left + br.width * 0.25, y: br.bottom - cr.top }            // BALTHASAR bottom-left  (25%,100%)
+      const bbr     = { x: br.left - cr.left + br.width * 0.75, y: br.bottom - cr.top }            // BALTHASAR bottom-right (75%,100%)
+      const ctr     = { x: ca.right - cr.left, y: ca.top - cr.top + ca.height * 0.44 }             // CASPER top-right cut   (100%,44%)
+      const mtl     = { x: me.left  - cr.left, y: me.top - cr.top + me.height * 0.44 }             // MELCHIOR top-left cut  (0%,44%)
+      const ctr_mid = { x: ca.right - cr.left, y: ca.top - cr.top + ca.height * 0.75 }             // CASPER side mid        (100%,75%)
+      const mtl_mid = { x: me.left  - cr.left, y: me.top - cr.top + me.height * 0.75 }             // MELCHIOR side mid      (0%,75%)
 
       setBars([
-        { x1: bbl.x, y1: bbl.y, x2: ctr.x, y2: ctr.y }, // BALTHASAR → CASPER
-        { x1: bbr.x, y1: bbr.y, x2: mtl.x, y2: mtl.y }, // BALTHASAR → MELCHIOR
-        { x1: ctr.x, y1: ctr.y, x2: mtl.x, y2: mtl.y }, // CASPER → MELCHIOR
+        { x1: bbl.x, y1: bbl.y, x2: ctr.x,     y2: ctr.y     }, // BALTHASAR → CASPER   (diagonal)
+        { x1: bbr.x, y1: bbr.y, x2: mtl.x,     y2: mtl.y     }, // BALTHASAR → MELCHIOR (diagonal)
+        { x1: ctr_mid.x, y1: ctr_mid.y, x2: mtl_mid.x, y2: mtl_mid.y }, // CASPER → MELCHIOR (horizontal, at mid)
       ])
 
-      // Title center = midpoint between BALTHASAR bottom and CASPER/MELCHIOR cut level
-      const titleY = (bbl.y + ctr.y) / 2
-      // At titleY, interpolate along each diagonal bar to find the available width
+      // Title: vertically centered in the triangle, maxWidth = inscribed width at that Y
+      const titleY = (bbl.y + ctr_mid.y) / 2
       const t = (titleY - bbl.y) / (ctr.y - bbl.y)
       const leftX  = bbl.x + t * (ctr.x - bbl.x)
       const rightX = bbr.x + t * (mtl.x - bbr.x)
-      setTitleCenter({ y: titleY, maxWidth: rightX - leftX - 24 })
+      setTitlePos({ y: titleY, maxWidth: rightX - leftX - 32 })
     }
 
     calcBars()
@@ -149,6 +168,44 @@ export default function MagiHero({ startTyping }: Props) {
     return () => { if (timer.current) clearTimeout(timer.current) }
   }, [projIndex, startTyping])
 
+  useEffect(() => {
+    if (!startTyping) return
+
+    const fullText = buildMsgText(heroMessages[msgIndex])
+    msgCountRef.current = 0
+    msgPhase.current = 'in'
+    setMsgCharCount(0)
+
+    function tick() {
+      if (msgTimer.current) clearTimeout(msgTimer.current)
+
+      if (msgPhase.current === 'in') {
+        msgCountRef.current = Math.min(msgCountRef.current + 1, fullText.length)
+        setMsgCharCount(msgCountRef.current)
+        if (msgCountRef.current >= fullText.length) {
+          msgPhase.current = 'hold'
+          msgTimer.current = setTimeout(tick, HOLD_MS)
+        } else {
+          msgTimer.current = setTimeout(tick, TYPE_SPEED)
+        }
+      } else if (msgPhase.current === 'hold') {
+        msgPhase.current = 'out'
+        msgTimer.current = setTimeout(tick, DELETE_SPEED)
+      } else {
+        msgCountRef.current = Math.max(msgCountRef.current - 1, 0)
+        setMsgCharCount(msgCountRef.current)
+        if (msgCountRef.current <= 0) {
+          setMsgIndex((i) => (i + 1) % heroMessages.length)
+        } else {
+          msgTimer.current = setTimeout(tick, DELETE_SPEED)
+        }
+      }
+    }
+
+    msgTimer.current = setTimeout(tick, TYPE_SPEED)
+    return () => { if (msgTimer.current) clearTimeout(msgTimer.current) }
+  }, [msgIndex, startTyping])
+
   const fullLines = buildLines(activeProjects[projIndex])
   let charsLeft = charCount
   const renderedLines = fullLines.map((line) => {
@@ -158,11 +215,21 @@ export default function MagiHero({ startTyping }: Props) {
     return slice
   })
 
+  const currentMsg       = heroMessages[msgIndex]
+  const fullMsgLines     = buildMsgLines(currentMsg)
+  let msgCharsLeft       = msgCharCount
+  const renderedMsgLines = fullMsgLines.map((line) => {
+    if (msgCharsLeft <= 0) return ''
+    const slice = line.slice(0, msgCharsLeft)
+    msgCharsLeft -= line.length + 1
+    return slice
+  })
+
   return (
     <section
       id="hero"
       className="flex flex-col justify-center items-center relative"
-      style={{ height: '100vh', padding: '80px 40px 124px' }}
+      style={{ height: '100vh', padding: '80px 40px 40px' }}
     >
       {/* MAGI cross grid */}
       <div
@@ -205,36 +272,6 @@ export default function MagiHero({ startTyping }: Props) {
           ))}
         </svg>
 
-        {/* JP corner labels — hidden on mobile via responsive style */}
-        <div
-          className="font-jp font-black absolute top-6 left-6 z-[5] hide-mobile"
-          style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: 'var(--cyan)', letterSpacing: '12px' }}
-        >
-          質 問
-        </div>
-        <div
-          className="font-jp font-black absolute top-6 right-6 z-[5] hide-mobile"
-          style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: 'var(--cyan)', letterSpacing: '12px' }}
-        >
-          解 決
-        </div>
-
-        {/* Info badge — right edge, vertically centered */}
-        <div
-          className="font-jp font-black absolute z-[5] hide-mobile"
-          style={{
-            top: '50%',
-            right: '24px',
-            transform: 'translateY(-50%)',
-            background: 'var(--orange)',
-            color: 'var(--bg)',
-            fontSize: '14px',
-            padding: '6px 10px',
-            letterSpacing: '4px',
-          }}
-        >
-          情 報
-        </div>
 
         {/* Left meta block — rotating active projects, positioned below 質 問 */}
         <div
@@ -269,6 +306,40 @@ export default function MagiHero({ startTyping }: Props) {
           </div>
         </div>
 
+        {/* Right meta block — rotating hero messages */}
+        <div
+          className="absolute z-[5] hide-mobile"
+          style={{ top: '80px', right: '30px', textAlign: 'right' }}
+        >
+          <div
+            className="font-orbitron font-bold"
+            style={{
+              color: getMsgColor(currentMsg.type),
+              fontSize: 'clamp(11px, 1.5vw, 18px)',
+              letterSpacing: '2px',
+              minHeight: '1.4em',
+            }}
+          >
+            {renderedMsgLines[0]}
+            {renderedMsgLines[0].length < fullMsgLines[0].length && (
+              <span className="typing-cursor" />
+            )}
+          </div>
+          <div
+            className="text-[13px] mt-1"
+            style={{ color: 'var(--text-dim)', fontFamily: 'var(--font-mono), monospace', lineHeight: '1.8' }}
+          >
+            {renderedMsgLines.slice(1).map((line, i) => (
+              <div key={i} style={{ minHeight: '1.8em' }}>
+                {line}
+                {line.length > 0 && line.length < fullMsgLines[i + 1].length && (
+                  <span className="typing-cursor" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Row 1: empty / BALTHASAR / empty */}
         <div />
         <a ref={balthasarRef} href="/projects" className="magi-panel magi-panel-balthasar" style={{ ...panelStyle, gridColumn: 2, gridRow: 1 }}>
@@ -286,7 +357,7 @@ export default function MagiHero({ startTyping }: Props) {
         <div
           style={{
             position: 'absolute',
-            top: titleCenter ? `${titleCenter.y}px` : '50%',
+            top: titlePos ? `${titlePos.y}px` : '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
             zIndex: 10,
@@ -298,16 +369,16 @@ export default function MagiHero({ startTyping }: Props) {
             gap: '10px',
             padding: '20px',
             pointerEvents: 'none',
-            width: titleCenter ? `${titleCenter.maxWidth}px` : undefined,
           }}
         >
           {/* Name */}
           <span
             className="font-orbitron font-black"
             style={{
-              fontSize: 'clamp(14px, 2.4vw, 28px)',
+              fontSize: 'clamp(11px, 1.6vw, 24px)',
               color: 'var(--orange)',
-              letterSpacing: '4px',
+              letterSpacing: 'clamp(1px, 0.4vw, 4px)',
+              whiteSpace: 'nowrap' as const,
               textShadow: '0 0 30px var(--orange-glow)',
               textAlign: 'center',
               display: 'block',

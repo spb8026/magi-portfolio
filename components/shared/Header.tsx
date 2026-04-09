@@ -14,23 +14,21 @@ export default function Header({ visible, terminalWidth = 0 }: Props) {
         opacity: visible ? 1 : 0,
       }}
     >
-      <div className="flex items-center gap-4">
+      <a
+        href="/"
+        className="flex items-center gap-4"
+        style={{ textDecoration: 'none' }}
+      >
         <div
-          className="font-orbitron font-black text-[26px] tracking-[4px]"
+          className="font-orbitron font-black text-[20px] tracking-[3px]"
           style={{
             color: 'var(--orange)',
             textShadow: '0 0 20px var(--orange-glow)',
           }}
         >
-          MAGI
+          SHAWN BRODERICK
         </div>
-        <div
-          className="font-jp font-black text-[18px] tracking-[6px]"
-          style={{ color: 'var(--cyan)' }}
-        >
-          個人情報
-        </div>
-      </div>
+      </a>
 
       <nav className="flex gap-2">
         {[

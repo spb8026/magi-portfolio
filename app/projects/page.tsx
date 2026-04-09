@@ -3,15 +3,19 @@ import SectionHeader from '@/components/shared/SectionHeader'
 import ProjectCard from '@/components/shared/ProjectCard'
 import AcademicCard from '@/components/shared/AcademicCard'
 import ScrollReveal from '@/components/shared/ScrollReveal'
+import SecondaryProjects from '@/components/shared/SecondaryProjects'
 import { academic, projects } from '@/lib/data'
 
 export default function ProjectsPage() {
+  const primary = projects.filter(p => !p.secondary)
+  const secondary = projects.filter(p => p.secondary)
+
   return (
     <PageLayout>
       {/* Side Projects */}
       <section className="py-20 px-10">
         <ScrollReveal>
-          <SectionHeader code="BALTHASAR-2" title="SIDE PROJECTS" jp="計画" />
+          <SectionHeader code="BALTHASAR-2" title="SIDE PROJECTS" />
         </ScrollReveal>
         <ScrollReveal>
           <div
@@ -21,17 +25,18 @@ export default function ProjectsPage() {
               gap: '24px',
             }}
           >
-            {projects.map((project) => (
+            {primary.map((project) => (
               <ProjectCard key={project.id} {...project} />
             ))}
           </div>
         </ScrollReveal>
+        {secondary.length > 0 && <SecondaryProjects projects={secondary} />}
       </section>
 
       {/* Academic */}
       <section className="py-20 px-10">
         <ScrollReveal>
-          <SectionHeader code="BALTHASAR-2 // ACADEMIC" title="COURSEWORK" jp="学術" />
+          <SectionHeader code="BALTHASAR-2 // ACADEMIC" title="COURSEWORK" />
         </ScrollReveal>
         <ScrollReveal>
           <div

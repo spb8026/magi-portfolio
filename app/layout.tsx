@@ -38,7 +38,7 @@ export default function RootLayout({
       lang="en"
       className={`${orbitron.variable} ${shareTechMono.variable} ${notoSansJP.variable}`}
     >
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   )
 }

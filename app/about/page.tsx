@@ -6,22 +6,30 @@ import { aboutCards } from '@/lib/data'
 
 export default function AboutPage() {
   return (
-    <PageLayout>
-      <section className="py-20 px-10">
+    <PageLayout fitScreen>
+      <section className="pt-4 pb-6 px-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <ScrollReveal>
-          <SectionHeader code="MELCHIOR-1" title="ABOUT ME" jp="情報" />
+          <SectionHeader code="MELCHIOR-1" title="ABOUT ME" />
         </ScrollReveal>
         <ScrollReveal>
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gridTemplateColumns: '1fr 2fr',
               gap: '24px',
+              alignItems: 'start',
             }}
           >
-            {aboutCards.map((card) => (
-              <DataCard key={card.index} {...card} />
-            ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              {aboutCards.filter((c) => c.index !== '04').map((card) => (
+                <DataCard key={card.index} {...card} />
+              ))}
+            </div>
+            <div>
+              {aboutCards.filter((c) => c.index === '04').map((card) => (
+                <DataCard key={card.index} {...card} />
+              ))}
+            </div>
           </div>
         </ScrollReveal>
       </section>
