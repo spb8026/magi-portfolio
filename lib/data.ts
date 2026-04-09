@@ -126,6 +126,10 @@ export const projects: Project[] = [
       "Developing a full-stack graphical visualzier for the Yu-Gi-Oh card game. Project includes creating a wrapper for the YGOPro C++ Engine into Go, the State Space Exporler, API Layer, and front-end React Appplciation. ",
     tags: ["Go", "C++", "Claude Code"],
     inProgress: true,
+    links: [
+      { label: "GITHUB", href: "https://github.com/spb8026/ygo-visualizer" },
+      { label: "DEV NOTES", href: "https://yugioh-visualizer.notion.site/Yu-Gi-Oh-Line-Visualizer-30d9ae55d0488062b164d79a0e9d6419" },
+    ]
   },
   {
     id: "PRJ-013",
@@ -135,6 +139,9 @@ export const projects: Project[] = [
       "Next.js Portfolio site for displaying my projects and skills fully builty utilized Claude Code ",
     tags: ["Claude Code", "Next.js", "React"],
     inProgress: true,
+    links: [
+      { label: "GITHUB", href: "https://github.com/spb8026/magi-portfolio" },
+    ]
   },
 
   {
@@ -193,6 +200,9 @@ export const projects: Project[] = [
       "Built a full interpreter in Java for a custom language called Jott. Implemented lexical analysis, syntax parsing, abstract syntax tree validation, and runtime execution as part of a semester-long team project.",
     tags: ["Java"],
     secondary: false,
+    links: [
+      { label: "GITHUB", href: "https://github.com/apc5074/Team12Compiler" },
+    ]
   },
   {
     id: "PRJ-004",
