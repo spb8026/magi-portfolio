@@ -11,7 +11,7 @@ export default function ExperiencePage() {
 
   return (
     <PageLayout>
-      <section className="py-20 px-10">
+      <section className="py-12 md:py-20 px-4 md:px-10">
         <ScrollReveal>
           <SectionHeader code="CASPER-3" title="EXPERIENCE" />
         </ScrollReveal>

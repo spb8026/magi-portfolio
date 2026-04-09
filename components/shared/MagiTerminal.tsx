@@ -14,6 +14,7 @@ export default function MagiTerminal() {
 
   return (
     <div
+      className="magi-terminal"
       style={{
         position: 'fixed',
         bottom: 0,

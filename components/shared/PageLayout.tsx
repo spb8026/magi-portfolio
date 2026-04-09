@@ -14,13 +14,14 @@ export default function PageLayout({ children, fitScreen }: Props) {
       className="relative"
       style={{
         background: 'var(--bg)',
-        ...(fitScreen ? { height: '100vh', display: 'flex', flexDirection: 'column' } : { minHeight: '100vh' }),
+        ...(fitScreen ? { minHeight: '100vh', display: 'flex', flexDirection: 'column' } : { minHeight: '100vh' }),
       }}
     >
       <CrtOverlay />
       <ParticleField />
       <Header visible={true} />
       <main
+        className="page-bottom-pad"
         style={{
           paddingTop: fitScreen ? '72px' : '100px',
           ...(fitScreen ? { flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 } : {}),

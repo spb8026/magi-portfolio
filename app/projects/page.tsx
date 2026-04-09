@@ -13,7 +13,7 @@ export default function ProjectsPage() {
   return (
     <PageLayout>
       {/* Side Projects */}
-      <section className="py-20 px-10">
+      <section className="py-12 md:py-20 px-4 md:px-10">
         <ScrollReveal>
           <SectionHeader code="BALTHASAR-2" title="PROJECTS" />
         </ScrollReveal>
@@ -34,7 +34,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Academic */}
-      <section className="py-20 px-10">
+      <section className="py-12 md:py-20 px-4 md:px-10">
         <ScrollReveal>
           <SectionHeader code="BALTHASAR-2 // ACADEMIC" title="COURSEWORK" />
         </ScrollReveal>

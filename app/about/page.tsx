@@ -7,12 +7,13 @@ import { aboutCards } from '@/lib/data'
 export default function AboutPage() {
   return (
     <PageLayout fitScreen>
-      <section className="pt-4 pb-6 px-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <section className="pt-4 pb-6 px-4 md:px-10" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <ScrollReveal>
           <SectionHeader code="MELCHIOR-1" title="ABOUT ME" />
         </ScrollReveal>
         <ScrollReveal>
           <div
+            className="about-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: '1fr 2fr',

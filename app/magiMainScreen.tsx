@@ -17,7 +17,7 @@ export default function MagiMainScreen() {
 
   return (
     <div
-      className="relative"
+      className="relative magi-main-screen"
       style={{
         height: '100vh',
         background: 'var(--bg)',
@@ -30,7 +30,7 @@ export default function MagiMainScreen() {
       <ParticleField />
       <BootScreen onComplete={handleBootComplete} />
       <Header visible={bootDone} />
-      <div style={{ opacity: bootDone ? 1 : 0, transition: 'opacity 0.7s ease', height: '100%' }}>
+      <div style={{ opacity: bootDone ? 1 : 0, transition: 'opacity 0.7s ease', minHeight: '100%' }}>
         <MagiHero startTyping={bootDone} />
       </div>
       {bootDone && <MagiTerminal />}

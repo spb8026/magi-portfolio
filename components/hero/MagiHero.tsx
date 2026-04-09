@@ -5,6 +5,18 @@ import GlitchText from './GlitchText'
 import { activeProjects, heroMessages } from '@/lib/data'
 import type { ActiveProject, HeroMessage } from '@/lib/types'
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+  return isMobile
+}
+
 const TYPE_SPEED   = 28   // ms per char typing in
 const DELETE_SPEED = 14   // ms per char typing out
 const HOLD_MS      = 2800 // ms to hold after fully typed
@@ -74,6 +86,7 @@ interface Props {
 interface Bar { x1: number; y1: number; x2: number; y2: number }
 
 export default function MagiHero({ startTyping }: Props) {
+  const isMobile = useIsMobile()
   const [projIndex, setProjIndex] = useState(0)
   const [charCount, setCharCount] = useState(0)
   const phase    = useRef<'in' | 'hold' | 'out'>('in')
@@ -224,6 +237,85 @@ export default function MagiHero({ startTyping }: Props) {
     msgCharsLeft -= line.length + 1
     return slice
   })
+
+  if (isMobile) {
+    return (
+      <section
+        id="hero"
+        className="flex flex-col justify-center items-center relative"
+        style={{ minHeight: '100vh', padding: '60px 16px 80px' }}
+      >
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '480px',
+            border: '2px solid var(--panel-border)',
+            background: 'var(--bg)',
+            boxShadow: 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(0,212,255,0.05)',
+          }}
+        >
+          {/* Title block */}
+          <div
+            style={{
+              padding: '32px 24px',
+              textAlign: 'center',
+              borderBottom: '1px solid var(--panel-border)',
+              background: 'var(--panel-bg)',
+            }}
+          >
+            <div
+              className="font-orbitron font-black"
+              style={{
+                fontSize: '22px',
+                color: 'var(--orange)',
+                letterSpacing: '3px',
+                textShadow: '0 0 20px var(--orange-glow)',
+              }}
+            >
+              <GlitchText text="SHAWN BRODERICK" />
+            </div>
+            <div style={{ width: '60%', height: '1px', background: 'var(--orange-dim)', margin: '16px auto' }} />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              <span style={{ color: 'var(--cyan)', fontSize: '10px', fontFamily: 'var(--font-mono), monospace' }}>//</span>
+              <span
+                className="font-orbitron"
+                style={{ fontSize: '11px', color: 'var(--cyan)', letterSpacing: '4px', textShadow: '0 0 12px var(--cyan-glow)' }}
+              >
+                SOFTWARE DEVELOPER
+              </span>
+              <span style={{ color: 'var(--cyan)', fontSize: '10px', fontFamily: 'var(--font-mono), monospace' }}>//</span>
+            </div>
+          </div>
+
+          {/* Three stacked nav panels */}
+          {([
+            { href: '/projects',   label: 'PROJECTS',   sub: 'BALTHASAR · 2' },
+            { href: '/experience', label: 'EXPERIENCE', sub: 'CASPER · 3'    },
+            { href: '/about',      label: 'ABOUT ME',   sub: 'MELCHIOR · 1'  },
+          ] as const).map(({ href, label, sub }, i) => (
+            <a
+              key={href}
+              href={href}
+              className="magi-mobile-panel"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '28px 24px',
+                background: 'var(--panel-bg)',
+                borderBottom: i < 2 ? '1px solid var(--panel-border)' : 'none',
+                textDecoration: 'none',
+              }}
+            >
+              <div style={{ ...panelLabelStyle, fontSize: '18px' }}>{label}</div>
+              <div style={panelSubStyle}>{sub}</div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section

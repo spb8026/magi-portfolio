@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Orbitron, Share_Tech_Mono, Noto_Sans_JP } from "next/font/google"
 import "./globals.css"
+import MobileTicker from "@/components/shared/MobileTicker"
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -38,7 +39,10 @@ export default function RootLayout({
       lang="en"
       className={`${orbitron.variable} ${shareTechMono.variable} ${notoSansJP.variable}`}
     >
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        <MobileTicker />
+      </body>
     </html>
   )
 }
