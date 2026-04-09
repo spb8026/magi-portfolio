@@ -15,7 +15,7 @@ export default function ProjectsPage() {
       {/* Side Projects */}
       <section className="py-20 px-10">
         <ScrollReveal>
-          <SectionHeader code="BALTHASAR-2" title="SIDE PROJECTS" />
+          <SectionHeader code="BALTHASAR-2" title="PROJECTS" />
         </ScrollReveal>
         <ScrollReveal>
           <div

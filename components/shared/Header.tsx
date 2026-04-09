@@ -32,10 +32,9 @@ export default function Header({ visible, terminalWidth = 0 }: Props) {
 
       <nav className="flex gap-2">
         {[
-          { href: '/about', label: 'MELCHIOR' },
-          { href: '/projects', label: 'BALTHASAR' },
-          { href: '/experience', label: 'CASPER' },
-          { href: '#contact', label: 'LINK' },
+          { href: '/about', label: 'ABOUT' },
+          { href: '/projects', label: 'PROJECTS' },
+          { href: '/experience', label: 'EXPERIANCE' },
         ].map(({ href, label }) => (
           <a
             key={href}

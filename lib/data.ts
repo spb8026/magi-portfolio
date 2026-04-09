@@ -126,7 +126,7 @@ export const projects: Project[] = [
     tags: ["Go", "C++", "Claude Code"],
     inProgress: true,
   },
-    {
+  {
     id: "PRJ-013",
     icon: "🌐",
     title: "Developer Portfolio",
@@ -135,7 +135,7 @@ export const projects: Project[] = [
     tags: ["Claude Code", "Next.js", "React"],
     inProgress: true,
   },
-  
+
   {
     id: "PRJ-011",
     icon: "📈",
@@ -484,32 +484,42 @@ export const contactLinks: ContactLink[] = [
 
 // ===== HERO MESSAGES (right meta block) =====
 export const heroMessages: HeroMessage[] = [
-  {
-    type: 'warn',
-    header: 'EVANGELION_THEME_DETECTED',
+    {
+    type: "warn",
+    header: "FULL TIME POSTION NOT FOUND",
     lines: [
-      'SITE BUILT ON NERV MAGI ARCHITECTURE',
-      'THREE CORES: MELCHIOR·BALTHASAR·CASPER',
-      'BASED ON NEON GENESIS EVANGELION',
-      'EACH PANEL = ONE SUPERCOMPUTER CORE',
+      "PLEASE CONTACT SHAWN BRODERICK",
+      "ACTIVELY SEEKING FULL TIME POSITION",
+      "EMAIL: shawnbroderick65@gmail.com",
     ],
   },
   {
-    type: 'tip',
-    header: 'NAVIGATION_HINT',
+    type: "info",
+    header: "WEBSITE_INSPIRATION",
     lines: [
-      'SKILL TAGS ARE INTERACTIVE',
-      'CLICK ANY TAG → FILTERED SKILL VIEW',
-      'PANELS ABOVE LINK TO FULL SECTIONS',
+      "SITE BUILT ON NERV MAGI ARCHITECTURE",
+      "THREE CORES: MELCHIOR·BALTHASAR·CASPER",
+      "BASED ON NEON GENESIS EVANGELION",
+      "EACH PANEL = ONE SUPERCOMPUTER CORE",
     ],
   },
   {
-    type: 'sys',
-    header: 'AI_MODULE_STATUS',
+    type: "tip",
+    header: "NAVIGATION_HINT",
     lines: [
-      'MAGI-AI INTERFACE: OFFLINE',
-      'CHAT CAPABILITY:   PENDING',
-      'STATUS:            FUTURE_SPRINT',
+      "SKILL TAGS ARE INTERACTIVE",
+      "CLICK ANY TAG → FILTERED SKILL VIEW",
+      "PANELS ABOVE LINK TO FULL SECTIONS",
     ],
   },
+  {
+    type: "sys",
+    header: "AI_MODULE_STATUS",
+    lines: [
+      "MAGI-AI INTERFACE: OFFLINE",
+      "CHAT CAPABILITY:   PENDING",
+      "STATUS:            FUTURE_SPRINT",
+    ],
+  },
+
 ];
