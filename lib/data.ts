@@ -511,7 +511,7 @@ export const contactLinks: ContactLink[] = [
     href: "https://linkedin.com/in/shawn-broderick/",
     external: true,
   },
-  { label: "RESUME", icon: "📄", href: "/resume.pdf" },
+  { label: "RESUME", icon: "📄", href: "/resume" },
 ];
 
 // ===== FILE RECORDS (shown in /records hub) =====
