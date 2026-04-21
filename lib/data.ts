@@ -131,12 +131,21 @@ export const projects: Project[] = [
       { label: "DEV NOTES", href: "https://yugioh-visualizer.notion.site/Yu-Gi-Oh-Line-Visualizer-30d9ae55d0488062b164d79a0e9d6419" },
     ]
   },
+    {
+    id: "PRJ-010",
+    icon: "🎵",
+    title: "Senojfromtheroc Interactive Concert",
+    description:
+      "Led a team of 5 to produce a live interactive concert for a local artist with 40+ attendees. Built two real-time audience visualization systems in TouchDesigner using NVIDIA background removal and live video thresholding, developed a Python/OpenCV flashlight tracking pipeline transmitting crowd positions over UDP to a Unity scene, and rebuilt the entire show control system from scratch two days before the event after identifying reliability risks with the original setup.",
+    tags: ["TouchDesigner", "Unity", "Python"],
+    inProgress: true,
+  },
   {
     id: "PRJ-013",
     icon: "🌐",
     title: "Developer Portfolio",
     description:
-      "Next.js Portfolio site for displaying my projects and skills fully builty utilized Claude Code ",
+      "Next.js Portfolio site for displaying my projects and skills fully built utilized Claude Code ",
     tags: ["Claude Code", "Next.js", "React"],
     inProgress: true,
     links: [
@@ -154,15 +163,6 @@ export const projects: Project[] = [
     links: [
       { label: "GITHUB", href: "https://github.com/spb8026/TradingAlgo" },
     ],
-  },
-  {
-    id: "PRJ-010",
-    icon: "🎵",
-    title: "Interactive Music Experience",
-    description:
-      "Lead a team of 5 in orchestrating a live interactive concert for a local Rochester Artists. Handled artist communicaiton, team managment, as well as development for the project. Created live visuals using TouchDesigner. Developed a flashlight tracking Python program to feed to a Unity Project. ",
-    tags: ["TouchDesigner", "Unity", "Python"],
-    inProgress: true,
   },
 
   {
